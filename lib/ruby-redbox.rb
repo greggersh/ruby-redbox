@@ -1,5 +1,4 @@
 require 'rubygems'
-gem 'httparty'
 require 'httparty'
 
 class Redbox
