@@ -23,7 +23,7 @@ class RedboxAPI
       headers.each do |key, value|
         request[key] = value
       end
-      Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
+      Net::HTTP.new(url.host, url.port).start {|http| http.request(request) }
     end
   end
 end
