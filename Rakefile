@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ruby-redbox"
   gem.homepage = "http://github.com/greggersh/ruby-redbox"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby gem for interacting with the Redbox API}
+  gem.description = %Q{Redbox has an undocumented JSON/Javascript API that powers their site.  Wouldn't it be nice to be able to use it for stuff?  I think so.}
   gem.email = "greggersh@yahoo.com"
   gem.authors = ["Greg Gershman"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
