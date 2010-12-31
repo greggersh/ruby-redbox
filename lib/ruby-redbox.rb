@@ -11,6 +11,6 @@ class Redbox
   
   def get_titles
     response = self.class.get("/api/product/js/titles")[13..-1]    
-    @titles || = response
+    @titles ||= response
   end  
 end
