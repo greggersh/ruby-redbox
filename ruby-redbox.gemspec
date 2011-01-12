@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/ruby-redbox.rb",
+    "ruby-redbox.gemspec",
     "spec/ruby-redbox_spec.rb",
     "spec/spec_helper.rb"
   ]
