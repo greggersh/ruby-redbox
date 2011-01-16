@@ -1,4 +1,7 @@
 require 'rubygems'
+require 'net/http'
+require 'net/https'
+require 'uri'
 
 class RedboxAPI
   class << self
