@@ -13,7 +13,7 @@ class RedboxAPI
       when Net::HTTPSuccess, Net::HTTPRedirection
         @titles = response.body[13..-1]
       else
-        response.error
+        response.message
       end
     end
     
@@ -26,7 +26,28 @@ class RedboxAPI
       headers.each do |key, value|
         request[key] = value
       end
-      Net::HTTP.new(url.host, url.port).start {|http| http.request(request) }
+      response = Net::HTTP.new(url.host, url.port).start {|http| http.request(request) }
+      return NearestKiosks.new(response.body)
     end
   end
+  
+  class Data
+    attr_reader :data
+    
+    def initialize(data)
+      @data = data
+    end
+    
+    def method_missing(method)
+      key = data[method.to_s]
+      key && key['data']
+    end
+    
+    def inspect
+      data = @data.inject([]) { |collection, key| collection << "#{key[0]}: #{key[1]['data']}"; collection }.join("\n    ")
+      "#<#{self.class}:0x#{object_id}\n    #{data}>"
+    end
+  end
+  
+  class NearestKiosks < Data; end
 end
