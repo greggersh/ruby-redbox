@@ -25,4 +25,7 @@ describe "RubyRedbox" do
       end
     end
   end
+  
+  describe "#nearest_kiosks" do
+  end
 end
