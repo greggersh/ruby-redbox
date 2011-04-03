@@ -42,16 +42,17 @@ class Redbox
   end
   
   class Kiosk
-    attr_accessor :vendor, :distance, :indoor, :address, :city, :state, :zip
+    attr_accessor :vendor, :distance, :indoor, :address, :city, :state, :zip, :in_stock
     
-    def initialize(options = {})
-      @vendor = options["profile"]["vendor"]
-      @distance = options["proximity"]["dist"]
-      @indoor = options["profile"]["indoor"]
-      @address = options["profile"]["addr"]
-      @city = options["profile"]["city"]
-      @state = options["profile"]["state"]
-      @zip = options["profile"]["zip"]
+    def initialize(kiosk = {})
+      @vendor = kiosk["profile"]["vendor"]
+      @distance = kiosk["proximity"]["dist"]
+      @indoor = kiosk["profile"]["indoor"]
+      @address = kiosk["profile"]["addr"]
+      @city = kiosk["profile"]["city"]
+      @state = kiosk["profile"]["state"]
+      @zip = kiosk["profile"]["zip"]
+      @in_stock = kiosk["inventory"]["stock"] if kiosk["inventory"]
     end
     
     def indoor?
