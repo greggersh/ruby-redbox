@@ -52,7 +52,7 @@ class Redbox
       @city = kiosk["profile"]["city"]
       @state = kiosk["profile"]["state"]
       @zip = kiosk["profile"]["zip"]
-      @in_stock = kiosk["inventory"]["stock"] if kiosk["inventory"]
+      @in_stock = kiosk["inventory"]["products"].first["stock"] if kiosk["inventory"] and kiosk["inventory"]["products"]
     end
     
     def indoor?
