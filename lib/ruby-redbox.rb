@@ -4,7 +4,7 @@ require 'net/https'
 require 'uri'
 require 'json'
 
-class RedboxAPI
+class Redbox
   class << self
   
     def get_titles
@@ -32,28 +32,26 @@ class RedboxAPI
       if parsed_response["d"]["success"] == false
         return parsed_response["d"]["msg"]
       else
-        return []
+        kiosks = []
+        parsed_response["d"]["data"].each do |kiosk|
+          kiosks << Kiosk.new(kiosk)
+        end
+        return kiosks
       end
     end
   end
   
-  class Data
-    attr_reader :data
+  class Kiosk
+    attr_accessor :vendor, :distance, :indoor, :address, :city, :state, :zip
     
-    def initialize(data)
-      @data = data
-    end
-    
-    def method_missing(method)
-      key = data[method.to_s]
-      key && key['data']
-    end
-    
-    def inspect
-      data = @data.inject([]) { |collection, key| collection << "#{key[0]}: #{key[1]['data']}"; collection }.join("\n    ")
-      "#<#{self.class}:0x#{object_id}\n    #{data}>"
+    def initialize(options = {})
+      @vendor = options["profile"]["vendor"]
+      @distance = options["proximity"]["dist"]
+      @indoor = options["profile"]["indoor"]
+      @address = options["profile"]["addr"]
+      @city = options["profile"]["city"]
+      @state = options["profile"]["state"]
+      @zip = options["profile"]["zip"]
     end
   end
-  
-  class NearestKiosks < Data; end
 end
