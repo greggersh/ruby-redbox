@@ -53,5 +53,9 @@ class Redbox
       @state = options["profile"]["state"]
       @zip = options["profile"]["zip"]
     end
+    
+    def indoor?
+      @indoor
+    end
   end
 end
